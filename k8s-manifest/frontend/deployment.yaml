@@ -1,1 +1,29 @@
-
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: frontend
+  labels:
+    app: frontend
+spec:
+  replica: 2
+  selector:
+    matchLabels:
+      app: frontend
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+         image: <<replace>>
+         env:
+          - name: REACT_APP_BACKEND_URL
+            value: >>"http://amanpathakdevops.study/api/tasks" <<
+         ports:
+         - conatinerPort: 3000
