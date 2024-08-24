@@ -8,14 +8,6 @@ RUN npm install
 
 copy . .
 
-RUN npm run build
-
-FROM node:14-alpine AS final
-
-WORKDIR /apps
-
-copy --from=build /apps/build .
-
 EXPOSE 80
 
 cmd ["npm", "start"]
