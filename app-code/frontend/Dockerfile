@@ -10,7 +10,7 @@ copy . .
 
 RUN npm run build
 
-FROM nodejs:14-alpine AS final
+FROM node:14-alpine AS final
 
 WORKDIR /apps
 
