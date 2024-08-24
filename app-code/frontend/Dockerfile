@@ -1,4 +1,4 @@
-FROM nodejs:alpine AS build
+FROM node:14 AS build
 
 WORKDIR /apps
 
@@ -10,9 +10,11 @@ copy . .
 
 RUN npm run build
 
-FROM nodejs:alpine AS final
+FROM nodejs:14-alpine AS final
 
-copy --from=build build .
+WORKDIR /apps
+
+copy --from=build /apps/build .
 
 EXPOSE 80
 
