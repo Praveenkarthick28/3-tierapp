@@ -1,5 +1,5 @@
 FROM node:14-alpine AS build
-using lightweight image for build
+# using lightweight image for build
 
 WORKDIR /usr/src/app
 
