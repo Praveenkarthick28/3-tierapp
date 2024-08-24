@@ -6,15 +6,13 @@ COPY *.json ./
 
 RUN npm install
 
-COPY . .
-
-RUN npm run build
-
 FROM node:14-alpine AS final
 
 WORKDIR /apps
 
-COPY --from=build /apps/build .
+COPY --from=build /apps .
+
+COPY . .
 
 EXPOSE 80
 
