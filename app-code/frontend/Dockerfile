@@ -1,19 +1,6 @@
-FROM node:14 AS build
-
-WORKDIR /apps
-
-COPY *.json ./
-
+FROM node:14
+WORKDIR /usr/src/app
+COPY package*.json ./
 RUN npm install
-
-FROM node:14-alpine AS final
-
-WORKDIR /apps
-
-COPY --from=build /apps .
-
 COPY . .
-
-EXPOSE 80
-
-CMD ["npm", "start"]
+CMD [ "npm", "start" ]
